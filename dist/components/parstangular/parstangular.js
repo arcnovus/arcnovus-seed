@@ -34,6 +34,8 @@ ParseApiModule.config(function (RestangularProvider) {
             // Parse always wraps the results in an array called 'results' so here's where we tell Restangular about that
             newResponse = response.results;
         }
+
+
         return newResponse;
     });
 
@@ -70,7 +72,7 @@ ParseApiModule.factory('ParseService', ['Restangular', 'PARSE_CONFIG',
 
         /** A helper function to get the currently logged in Parse User **/
         ParseApi.getCurrentUser = function () {
-            return this.all('users').one('me').get();
+            return this.all('users').all('me').getAll();
         };
 
         /** A helper function Parse Login **/
@@ -79,8 +81,9 @@ ParseApiModule.factory('ParseService', ['Restangular', 'PARSE_CONFIG',
                 "username": username,
                 "password": password
             };
-            return this.one('login').get(credentials);
+            return this.oneUrl('login', parseConfig.BASE_URL + 'login').get(credentials);
         };
+
 
         ParseApi.signUp = function (userObj) {
             return this.User.post(userObj);
@@ -90,7 +93,7 @@ ParseApiModule.factory('ParseService', ['Restangular', 'PARSE_CONFIG',
             var emailObj = {
                 "email": email
             };
-            return this.one('requestPasswordReset').post(emailObj);
+            return this.all('requestPasswordReset').post(emailObj);
         };
 
         return ParseApi;

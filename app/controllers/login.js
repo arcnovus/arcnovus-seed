@@ -3,7 +3,7 @@ BaseModule.controller('ctrlLogin',
 
         $scope.doLogin = function () {
             alert("login pressed");
-            $scope.curUser = ParseService.login($scope.usr, $scope.pwd).$object.username;
+            $scope.curUser = ParseService.login($scope.usr, $scope.pwd); //.$object.username;
         }
         $scope.open = function (url) {
 
