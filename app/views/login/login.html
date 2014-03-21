@@ -1,0 +1,19 @@
+<form>
+    <div ng-controller="ctrlLogin">
+
+        <br/>Username:
+        <input type="text" ng-model="usr" id="username" size="15" />
+        <br />Password:
+        <input type="password" ng-model="pwd" id="password" size="15" />
+        <br />
+        <div align="center">
+            <p>
+                <button hm-tap="doLogin()">Login</button>
+            </p>
+            <p>
+                <button hm-tap="open('http://localhost/views/login/signup.html')">Sign Up</button>
+            </p>
+        </div>
+        <input type="text" ng-model="curUser" id="cur" size="15" />
+    </div>
+</form>
