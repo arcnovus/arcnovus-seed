@@ -10,3 +10,8 @@ input, textarea, [contenteditable] * {
 .content-padded {
   padding: 10px;
 }
+
+body{
+max-width:600px;
+}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

@@ -3,14 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>My HTML File</title>
 
-    <link rel="stylesheet" href="/stylesheets/fonts.css">
-    <link rel="stylesheet" href="/stylesheets/styleguide.css">
-    <link rel="stylesheet" href="/stylesheets/topcoat-mobile-light.css">
-
     <link rel="stylesheet" href="/stylesheets/application.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
 
     <script src="/cordova.js"></script>
 
@@ -19,7 +16,7 @@
     <script src="/components/underscore/underscore.js"></script>
     <script src="/components/restangular/dist/restangular.js"></script>
     <script src="/components/parstangular/parstangular.js"></script>
-    <script src="/components/angular-parse/angular-parse.js"></script>
+    <script src="/components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/components/hammerjs/hammer.js"></script>
     <script src="/components/angular-hammer/angular-hammer.js"></script>
 
@@ -30,27 +27,30 @@
 </head>
 
 <body>
-    <div class="container">
+    <div id="container">
 
-        <form>
-    <div ng-controller="ctrlLogin">
-
-        <br/>Username:
-        <input type="text" ng-model="usr" id="username" size="15" />
-        <br />Password:
-        <input type="password" ng-model="pwd" id="password" size="15" />
-        <br />
-        <div align="center">
-            <p>
-                <button hm-tap="doLogin()">Login</button>
-            </p>
-            <p>
-                <button hm-tap="open('http://localhost/views/login/signup.html')">Sign Up</button>
-            </p>
-        </div>
-        <input type="text" ng-model="curUser" id="cur" size="15" />
+        <form role="form" ng-controller="ctrlLogin" class="content-padded">
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="username" ng-model="usr" class="form-control" id="exampleUser" placeholder="Enter username">
     </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" ng-model="pwd" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+
+    <button hm-tap="doSignUp()" class="btn btn-default">Sign Up</button>
+    <button class="btn btn-primary" hm-tap="doLogin()">Login</button>
+    <div>
+        <ul data-ng-model="userList" data-ng-repeat="user in userList">
+            <li data-ng-style="isCurrent(user)">{{ user.username }}</li>
+        </ul>
+    </div>
+
+
 </form>
+
 
     </div>
 
